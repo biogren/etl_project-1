@@ -72,7 +72,7 @@ pn.extension('plotly')
 # In[2]:
 
 
-df= pd.read_csv("df_clean.csv", parse_dates=['datetime']).set_index("datetime").sort_index()
+df= pd.read_csv("https://biogren.github.io/etl_project-1/df_clean.csv", parse_dates=['datetime']).set_index("datetime").sort_index()
 df.head(5)
 
 
