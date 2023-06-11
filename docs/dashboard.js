@@ -50,7 +50,7 @@ init_doc()
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import pandas as pd
@@ -69,21 +69,21 @@ pn.extension()
 pn.extension('plotly')
 
 
-# In[2]:
+# In[ ]:
 
 
-df= pd.read_csv("https://biogren.github.io/etl_project-1/df_clean.csv", parse_dates=['datetime']).set_index("datetime").sort_index()
+df= pd.read_csv("https://raw.githubusercontent.com/biogren/etl_project-1/main/docs/df_clean.csv", parse_dates=['datetime']).set_index("datetime").sort_index()
 df.head(5)
 
 
-# In[3]:
+# In[ ]:
 
 
 #f= pd.read_csv("df_clean.csv", parse_dates=['datetime']).set_index("datetime").sort_index()
 #df.head(5)
 
 
-# In[4]:
+# In[ ]:
 
 
 # Make suitable df for dashboard
@@ -96,7 +96,7 @@ df['Liiklusõnnetuse liik [3]']=df['Liiklusõnnetuse liik [3]'].astype('category
 df['Lubatud sõidukiirus (PPA)']=df['Lubatud sõidukiirus (PPA)'].astype('category')
 
 
-# In[5]:
+# In[ ]:
 
 
 df.columns
@@ -104,7 +104,7 @@ df.columns
 
 # ## Siia kogun nupud
 
-# In[6]:
+# In[ ]:
 
 
 min = pd.to_datetime(df.index.min())
@@ -121,7 +121,7 @@ slider = pn.widgets.DateRangeSlider(
 #datetime_range_slider
 
 
-# In[7]:
+# In[ ]:
 
 
 # valikunupud perioodi joonistele
@@ -132,7 +132,7 @@ perioodid = pn.widgets.RadioButtonGroup(
 perioodid
 
 
-# In[8]:
+# In[ ]:
 
 
 # valikunupud õnnetuste joonistele
@@ -143,7 +143,7 @@ perioodid
 õnnetused
 
 
-# In[9]:
+# In[ ]:
 
 
 # valikunupud liiklusolude joonistele
@@ -154,7 +154,7 @@ olukord = pn.widgets.RadioButtonGroup(
 olukord
 
 
-# In[10]:
+# In[ ]:
 
 
 # multiselect widget for participant type
@@ -168,7 +168,7 @@ multi_choice = pn.widgets.MultiChoice(name='Liiklusõnnetuse osalised', value=op
 multi_choice
 
 
-# In[11]:
+# In[ ]:
 
 
 # ilmastiku jooniste nupud
@@ -178,13 +178,13 @@ ilmastik = pn.widgets.RadioButtonGroup(
 ilmastik
 
 
-# In[12]:
+# In[ ]:
 
 
 ilmastik.value
 
 
-# In[13]:
+# In[ ]:
 
 
 df[multi_choice.value].sum(axis=1)>0
@@ -192,7 +192,7 @@ df[multi_choice.value].sum(axis=1)>0
 
 # ## vaatan kas saab andmed paremini esitatud
 
-# In[14]:
+# In[ ]:
 
 
 def data(slider_value, multi_choice_value):
@@ -203,7 +203,7 @@ def data(slider_value, multi_choice_value):
 data(slider.value, multi_choice.value)[multi_choice.value]
 
 
-# In[15]:
+# In[ ]:
 
 
 # suured numbrid - hukkunud, vigastatud ja õnnetusi
@@ -221,7 +221,7 @@ pn.Row(statistika(slider.value, multi_choice.value, 'Õnnetusi'),statistika(slid
 
 # ## Siin teen joonised
 
-# In[16]:
+# In[ ]:
 
 
 # liiklusõnnetused liiklusolude kaupa kaupa
@@ -263,7 +263,7 @@ def ilmastik_joonis(liik, multi_choice_value, slider_value):
 ilmastik_joonis(ilmastik.value, multi_choice.value, slider.value)
 
 
-# In[17]:
+# In[ ]:
 
 
 # liiklusõnnetused liiklusolude kaupa kaupa
@@ -314,7 +314,7 @@ def liiklusolud(liik, multi_choice_value, slider_value):
 liiklusolud(olukord.value, multi_choice.value, slider.value)
 
 
-# In[18]:
+# In[ ]:
 
 
 import plotly.graph_objects as go
@@ -360,7 +360,7 @@ osalejad(õnnetused.value, multi_choice.value, slider.value)
 
 
 
-# In[19]:
+# In[ ]:
 
 
 # õnnetuste liigid
@@ -388,7 +388,7 @@ def onnetused_joonis(slider_value, multi_choice_value):
 onnetused_joonis(slider.value, multi_choice.value)
 
 
-# In[20]:
+# In[ ]:
 
 
 import plotly.express as px
@@ -415,7 +415,7 @@ def onnetused_joonis(slider_value, multi_choice_value):
 onnetused_joonis(slider.value, multi_choice.value)
 
 
-# In[21]:
+# In[ ]:
 
 
 import plotly.graph_objects as go
@@ -459,13 +459,13 @@ perioodid_joonis(perioodid.value, slider.value, multi_choice.value)
 
 
 
-# In[22]:
+# In[ ]:
 
 
 df.info()
 
 
-# In[23]:
+# In[ ]:
 
 
 # Kaart liiklusõnnetustega
@@ -482,7 +482,7 @@ def kaart(slider_value, multi_choice_value):
 #kaart(lider.value)
 
 
-# In[24]:
+# In[ ]:
 
 
 # Function to display current year
@@ -499,7 +499,7 @@ def tiitel(slider):
 
 
 
-# In[25]:
+# In[ ]:
 
 
 import panel as pn
